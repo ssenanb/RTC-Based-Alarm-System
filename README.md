@@ -21,15 +21,15 @@ Jumper cables
 
 Figure 1 : System Overview
 
-<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/SystemOverwiev.jpeg="System Overwiev" width="500"/>
+<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/SystemOverwiev.jpeg?raw=true"alt="System Overwiev" width="500"/>
 
 Figure 2 : One of the LCD Screens 
 
-<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/lcd_setHour.jpeg="Set Hour" width="500"/>
+<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/lcd_setHour.jpeg?raw=true"alt="Set Hour" width="500"/>
 
 Figure 3 : Default Mode
 
-<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/defaultMode.jpeg="Default Mode" width="500"/>
+<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/defaultMode.jpeg?raw=true"alt="Default Mode" width="500"/>
 
 There is a video demonstrating the alarm mode -> https://vimeo.com/1093398200/233cd4c41f?share=copy
 
@@ -37,7 +37,7 @@ There is a video demonstrating the alarm mode -> https://vimeo.com/1093398200/23
 
 Figue 4 : Pin Configuration In The STM32CubeIDE
 
-<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/configuration.png="Configuration" width="500"/>
+<img src="https://github.com/ssenanb/RTC-Based-Alarm-System/blob/main/configuration.png?raw=true"alt="Configuration" width="500"/>
 
 
 PA0 (USER Button) -> GPIO_EXTI0 -> Alarm Mode Starting
