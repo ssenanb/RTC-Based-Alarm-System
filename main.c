@@ -1,65 +1,21 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include "i2c_lcd.h"
 #include "stdio.h"
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
 #define RTC_WRITE_ADDRESS 0xD0
 #define RTC_READ_ADDRESS 0xD1
-/* USER CODE END PD */
 
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
 
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c2;
 
-/* USER CODE BEGIN PV */
 I2C_LCD_HandleTypeDef lcd;
-/* USER CODE END PV */
 
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_I2C2_Init(void);
-/* USER CODE BEGIN PFP */
 
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 char lcdBuffer[32];
 int mode = 1;
 volatile int setting_mode = 0; //default mode
@@ -105,63 +61,30 @@ void RTC_Set_Time(uint8_t second, uint8_t minute, uint8_t hour){
 
 	HAL_I2C_Mem_Write(&hi2c1, RTC_WRITE_ADDRESS, 0x00, 1, time, 3, HAL_MAX_DELAY);
 }
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){ // change to the alarm mode
 
 	if(GPIO_Pin == GPIO_PIN_0)
 		setting_mode = 1;
 }
-/* USER CODE END 0 */
 
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
   SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
-  /* USER CODE BEGIN 2 */
+  
   RTC_Set_Time(0, 25, 15);
 
   lcd.hi2c = &hi2c2;
   lcd.address = 0x4E;
   lcd_init(&lcd);
 
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-
-
 	if(setting_mode == 0){
 	  time = RTC_Get_Time();
 
@@ -209,11 +132,10 @@ int main(void)
 		 }
 
 		 if(time.minute == alarm_minute && time.hour == alarm_hour){
-           HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+          		 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
 		 }
 	  }
    }
-  /* USER CODE END 3 */
 }
 
 /**
