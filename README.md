@@ -1,9 +1,10 @@
 # RTC-Based-Alarm-System
--> Project Description
+
+## Project Description
 
 This project is an alarm system and a digital clock. In the default mode, the current time is shown on the LCD screen. When the USER button is pressed, the system switches to alarm-setting mode.Upon entering this mode, a message appears on the screen indicating that the alarm mode is active. You can set the alarm hour and minute using with buttons. After setting the alarm, the system returns to the default clock display mode. When the current time matches the set alarm time, the buzzer is activated.
 
--> Components Used
+## Components Used
 
 STM32FODISC
 
@@ -33,7 +34,7 @@ Figure 3 : Default Mode
 
 There is a video demonstrating the alarm mode -> https://vimeo.com/1093398200/233cd4c41f?share=copy
 
--> Pin Configuration 
+## Pin Configuration 
 
 Figue 4 : Pin Configuration In The STM32CubeIDE
 
