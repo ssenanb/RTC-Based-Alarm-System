@@ -4,6 +4,15 @@
 
 This project is an alarm system and a digital clock. In the default mode, the current time is shown on the LCD screen. When the USER button is pressed, the system switches to alarm-setting mode.Upon entering this mode, a message appears on the screen indicating that the alarm mode is active. You can set the alarm hour and minute using with buttons. After setting the alarm, the system returns to the default clock display mode. When the current time matches the set alarm time, the buzzer is activated.
 
+## How It Works
+
+- The system operates in two main modes: Clock Mode and Alarm Setting Mode.
+- On boot, the DS3231 RTC module is initialized via I2C and current time is displayed.
+- PA0 (USER Button) triggers an EXTI interrupt to switch to alarm mode.
+- In alarm mode, PA8 and PA9 are used to increment hours and minutes.
+- PA10 exits alarm setting mode.
+- The buzzer on PB8 is triggered when the current time matches the set time.
+
 ## Components Used
 
 STM32FODISC
